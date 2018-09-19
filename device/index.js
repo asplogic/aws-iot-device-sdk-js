@@ -26,7 +26,6 @@ var exceptions = require('./lib/exceptions');
 var isUndefined = require('../common/lib/is-undefined');
 // var tlsReader = require('../common/lib/tls-reader');
 var path = require('path');
-if (typeof Buffer === 'undefined') global.Buffer = require('buffer').Buffer
 
 //begin module
 function makeTwoDigits(n) {
