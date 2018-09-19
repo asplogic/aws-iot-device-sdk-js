@@ -24,7 +24,7 @@ var crypto = require('crypto-js');
 //app deps
 var exceptions = require('./lib/exceptions');
 var isUndefined = require('../common/lib/is-undefined');
-var tlsReader = require('../common/lib/tls-reader');
+// var tlsReader = require('../common/lib/tls-reader');
 var path = require('path');
 // var fs = require('fs');
 
@@ -438,13 +438,14 @@ function DeviceClient(options) {
 
    // set protocol, do not override existing definitions if available
    if (isUndefined(options.protocol)) {
-      options.protocol = 'mqtts';
+      //options.protocol = 'mqtts';
+      throw new Error(exceptions.INVALID_CONNECT_OPTIONS);
    }
 
    if (isUndefined(options.host)) {
       throw new Error(exceptions.INVALID_CONNECT_OPTIONS);
    }
-
+/*
    if (options.protocol === 'mqtts') {
       // set port, do not override existing definitions if available
       if (isUndefined(options.port)) {
@@ -453,7 +454,9 @@ function DeviceClient(options) {
 
       //read and map certificates
       tlsReader(options);
-   } else if (options.protocol === 'wss' || options.protocol === 'wss-custom-auth') {
+   } else */
+   
+   if (options.protocol === 'wss' || options.protocol === 'wss-custom-auth') {
       if (options.protocol === 'wss') {
          //
          // AWS access id and secret key 
@@ -542,7 +545,7 @@ function DeviceClient(options) {
    //connect and return the client instance to map all mqttjs apis
 
    var protocols = {};
-   protocols.mqtts = require('./lib/tls');
+   // protocols.mqtts = require('./lib/tls');
    protocols.wss = require('./lib/ws');
 
    function _loadDefaultFilename() {
