@@ -26,7 +26,7 @@ var exceptions = require('./lib/exceptions');
 var isUndefined = require('../common/lib/is-undefined');
 var tlsReader = require('../common/lib/tls-reader');
 var path = require('path');
-var fs = require('fs');
+// var fs = require('fs');
 
 //begin module
 function makeTwoDigits(n) {
@@ -474,6 +474,7 @@ function DeviceClient(options) {
          } else {
             awsSTSToken = process.env.AWS_SESSION_TOKEN;
          }
+         /*
          if (isUndefined(awsAccessId) || isUndefined(awsSecretKey)) {
             var filename;
             try {
@@ -493,6 +494,7 @@ function DeviceClient(options) {
                console.log('Failed to read credentials from ' + filename);
             }
          }
+         */
          // AWS Access Key ID and AWS Secret Key must be defined
          if (isUndefined(awsAccessId) || (isUndefined(awsSecretKey))) {
             console.log('To connect via WebSocket/SigV4, AWS Access Key ID and AWS Secret Key must be passed either in options or as environment variables; see README.md');
